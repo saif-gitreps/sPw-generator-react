@@ -25,9 +25,55 @@ function App() {
    }, [length, useNumber, useChar, setPassword]);
 
    return (
-      <>
-         <h1 className="text-4xl text-center text-white">hello</h1>
-      </>
+      <div className="w-full max-w-md mx-auto shadow-md rounded-lg my-20 text-orange-300 bg-gray-300 transition-all duration-700">
+         <div className="flex shadow rounded-lg overflow-hidden mb-4">
+            <input
+               type="text"
+               value={password}
+               className="outline-none w-full py-1 px-3"
+               placeholder="password"
+               readOnly
+            />
+            <button className="outline-none bg-gray-600 text-white shrink-0 p-3 hover:bg-gray-500">
+               Copy
+            </button>
+         </div>
+         <div className="flex text-sm gap-x-5 p-2 bg-slate-700 rounded-b-lg">
+            <div className="flex items-center gap-x-1 ">
+               <input
+                  type="range"
+                  min={1}
+                  max={50}
+                  value={length}
+                  className="cursor-pointer"
+                  onChange={(e) => {
+                     setLength(e.target.value);
+                  }}
+               />
+               <label htmlFor>Length: {length}</label>
+               <input
+                  type="checkbox"
+                  defaultChecked={useNumber}
+                  id="number-input"
+                  onChange={() => {
+                     const value = useNumber ? 0 : 1;
+                     setUseNumber(value);
+                  }}
+               />
+               <label htmlFor="number-input">Number: {useNumber}</label>
+               <input
+                  type="checkbox"
+                  defaultChecked={useNumber}
+                  id="char-input"
+                  onChange={() => {
+                     const value = useChar ? 0 : 1;
+                     setUseChar(value);
+                  }}
+               />
+               <label htmlFor="char-input">Character: {useChar}</label>
+            </div>
+         </div>
+      </div>
    );
 }
 
